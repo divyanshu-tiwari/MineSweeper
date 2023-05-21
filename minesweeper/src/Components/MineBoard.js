@@ -3,22 +3,34 @@ import Square from './Square';
 import { useState } from 'react';
 
 export default function MineBoard() {
+    
     const[mines, setMines] = useState(generateMines());
    
     function generateMines(){
-       var newMine = Array(64).fill(0)
-       newMine[3] = 8;
-       return newMine;
+        var mineField = Array(64).fill(0)
+        var mineCount = 0;
+        while(mineCount < 10){
+            var index = parseInt(Math.random() * 100);
+            console.log("index " + index);
+
+            if(index < 0)
+                index = 0;
+            else if(index > 63)
+                index = 63;
+            console.log("index before placing mine " + index);
+            if(mineField[index] !== "X"){
+                mineField[index] = "X"
+                mineCount++;
+            }
+        }
+        return mineField;
     }
 
-    function onSquareClick(i){
-        // show the value at ith square
-    }
 
     return (
         <>
             <div className='minesRow'>
-                <Square value={mines[0]} ></Square>
+                <Square value={mines[0]}></Square>
                 <Square value={mines[1]}></Square>
                 <Square value={mines[2]}></Square>
                 <Square value={mines[3]}></Square>
