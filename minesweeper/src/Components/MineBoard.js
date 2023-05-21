@@ -5,22 +5,52 @@ import { useState } from 'react';
 export default function MineBoard() {
     
     const[mines, setMines] = useState(generateMines());
+
    
     function generateMines(){
-        var mineField = Array(64).fill(0)
+        var mineField = Array(64).fill(0);
         var mineCount = 0;
+
         while(mineCount < 10){
             var index = parseInt(Math.random() * 100);
-            console.log("index " + index);
 
             if(index < 0)
                 index = 0;
             else if(index > 63)
                 index = 63;
-            console.log("index before placing mine " + index);
+
             if(mineField[index] !== "X"){
                 mineField[index] = "X"
                 mineCount++;
+                
+                var row = parseInt(index/8);
+                var col = parseInt(index%8);
+
+                
+                if((col+1)<8 && mineField[(row*8) + (col+1)] !== "X")
+                    mineField[(row*8) + (col+1)]++;
+                if((col-1)> -1 && mineField[(row*8) + (col-1)] !== "X")
+                    mineField[(row*8) + (col-1)]++;
+
+                if((row+1)*8 < 64){
+                    if((col+1)<8 && mineField[(row+1)*8 + (col+1)] !== "X")
+                    mineField[(row+1)*8 + (col+1)]++;
+                    if(mineField[(row+1)*8 + (col)] !== "X")
+                        mineField[(row+1)*8 + (col)]++;
+                    if((col-1)> -1 && mineField[(row+1)*8 + (col-1)] !== "X")
+                        mineField[(row+1)*8 + (col-1)]++;
+                }
+                
+                if((row-1)*8 > -1){
+                    if((col+1)<8 && mineField[(row-1)*8 + (col+1)] !== "X")
+                        mineField[(row-1)*8 + (col+1)]++;
+                    if(mineField[(row-1)*8 + (col)] !== "X")
+                        mineField[(row-1)*8 + (col)]++;
+                    if((col-1)> -1 && mineField[(row-1)*8 + (col-1)] !== "X")
+                        mineField[(row-1)*8 + (col-1)]++;
+                }
+                
+            
             }
         }
         return mineField;

@@ -6,6 +6,11 @@ export default function Square({value}){
 
     function showValue(){
         setMineClicked(true);
+
+        if(value === "X"){
+            alert("You lost");
+        }
+
     }
 
     return(
