@@ -17,10 +17,11 @@ export default function MineBoard() {
             if(index < 0)
                 index = 0;
             else if(index > 63)
-                index = 63;
+                index = index%63;
 
             if(mineField[index] !== "X"){
                 mineField[index] = "X"
+                console.log("bomb place at " + index);
                 mineCount++;
                 
                 var row = parseInt(index/8);
