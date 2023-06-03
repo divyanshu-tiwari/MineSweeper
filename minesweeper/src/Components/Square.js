@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import { useState } from 'react';
 import '../Style/Square.css'
 
-export default function Square({value, endGame}){
+export default function Square({value, endGame, getGameStatus, updateGameStatus}){
     const[mineClicked, setMineClicked] = useState("false");
 
     function showValue(){
@@ -11,6 +11,12 @@ export default function Square({value, endGame}){
         if(value === "X"){
             alert("You lost");
             endGame();
+        } else {
+            updateGameStatus(getGameStatus-1);
+            if(getGameStatus === 0){
+                alert("you won");
+                endGame();
+            }
         }
 
     }
