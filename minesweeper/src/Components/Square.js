@@ -1,7 +1,8 @@
+import React, { Component }  from 'react';
 import { useState } from 'react';
 import '../Style/Square.css'
 
-export default function Square({value}){
+export default function Square({value, endGame}){
     const[mineClicked, setMineClicked] = useState("false");
 
     function showValue(){
@@ -9,13 +10,14 @@ export default function Square({value}){
 
         if(value === "X"){
             alert("You lost");
+            endGame();
         }
 
     }
 
     return(
         <>
-            <button className="Cell" onClick={showValue}>{mineClicked === true?value:""}</button>
+            <button className="Cell" onClick={()=>{showValue()}}>{mineClicked === true?value:""}</button>
         </>
     );
 }

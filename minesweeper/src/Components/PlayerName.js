@@ -1,4 +1,6 @@
-export default function PlayerName({setBoard, setForm}) {
+import React, { Component }  from 'react';
+
+export default function PlayerName({setBoard}) {
 
     return (
         <>
@@ -17,7 +19,7 @@ export default function PlayerName({setBoard, setForm}) {
                     </tr>
                     <tr>
                         <td>
-                            <button type="button" id="submit" onClick={()=>{setBoard();setForm()}}>Play!</button>
+                            <button type="button" id="submit" onClick={()=>{setBoard()}}>Play!</button>
                         </td>
                     </tr>
                 </table>
