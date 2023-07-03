@@ -1,10 +1,18 @@
 import React, { Component }  from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function PlayerName({setBoard}) {
 
     return (
         <>
             <form>
+            <div class="form-group">
+                <label for="name">Enter Detail</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" />
+            </div>
+            <button type="submit" className="btn btn-primary" onClick={()=>{setBoard()}}>Play</button>
+            </form>
+            {/* <form>
                 <table>
                     <tr>
                         <td colSpan="2">Enter Details</td>
@@ -23,7 +31,7 @@ export default function PlayerName({setBoard}) {
                         </td>
                     </tr>
                 </table>
-            </form>
+            </form> */}
         </>
 
     );
